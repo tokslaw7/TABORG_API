@@ -42,6 +42,8 @@ CSS styles to make the data visually appealing
 - User interactions, such as buttons or input fields, to trigger and control the API requests.
 - Implemented error handling to display a user-friendly message in case the API request fails.
 
+![FINAL API ](https://github.com/user-attachments/assets/376f2d95-eee0-474c-b2e2-c1c638e488a4)
+
 ![API Data Call] ("frontend/public/FINAL API .png")
 
 ## Deployment
