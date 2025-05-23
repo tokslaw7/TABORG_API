@@ -1,24 +1,53 @@
 import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import axios from "axios";
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+// const searchInput = document.getElementById("search-input");
+const results = document.getElementById("quotes-list");
 
-setupCounter(document.querySelector('#counter'))
+
+let config = {
+  method: 'get',
+  maxBodyLength: Infinity,
+  url: 'https://thesimpsonsquoteapi.glitch.me/quotes',
+  headers: { }
+};
+
+axios.request(config)
+.then((response) => {
+  console.log(JSON.stringify(response.data));
+})
+.catch((error) => {
+  console.log(error); 
+});
+
+document.addEventListener("DOMContentLoaded", function(){
+  async function fetchData() {
+    let config = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: 'https://thesimpsonsquoteapi.glitch.me/quotes',
+      headers: { }
+    };
+
+    try {
+      const resp = await axios.request(config)
+
+      console.log(resp);
+      const quotes = resp.data;
+      displayQuotes(quotes);
+    } catch(error){
+      console.log(error);
+      results.innerText = "Missing quotes";
+    }
+  }
+  fetchData();
+})
+
+function displayQuotes(quotes){
+  const quotesList = quotes.map(quote => {
+        return `<li class="quote-list"><blockquote>"${quote.quote}"</blockquote><p>${quote.character}</p><img src="${quote.image}" alt="${quote.character}"></li>`;
+      }).join ('');
+      results.innerHTML = `<ul class="quotes">${quotesList}</ul>`;
+}
+
+
