@@ -44,7 +44,6 @@ CSS styles to make the data visually appealing
 
 ![FINAL API ](https://github.com/user-attachments/assets/376f2d95-eee0-474c-b2e2-c1c638e488a4)
 
-![API Data Call] ("frontend/public/FINAL API .png")
 
 ## Deployment
 
